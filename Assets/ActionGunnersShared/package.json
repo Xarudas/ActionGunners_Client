@@ -1,0 +1,14 @@
+{
+  "name": "com.meatinc.actiongunnersshared",
+  "version": "1.0.0",
+  "displayName": "ActionGunnersShared",
+  "description": "Shared assets and scripts for ActionGunners",
+  "documentationUrl": "",
+  "changelogUrl": "",
+  "licensesUrl": "",
+  "author": {
+    "name": "MeatInc",
+    "email": "unity@example.com",
+    "url": "https://www.unity3d.com"
+  }
+}
