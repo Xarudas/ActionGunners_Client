@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
 using System;
+using MeatInc.ActionGunnersShared;
 
 namespace MeatInc.ActionGunnersClient
 {
@@ -14,6 +15,10 @@ namespace MeatInc.ActionGunnersClient
         public delegate void OnConnectedDelegate();
         public static ConnectionManager Instance;
         public event OnConnectedDelegate OnConnected;
+
+        public ushort PlayerId { get; set; }
+
+        public LobbyInfoData LobbyInfoData { get; set; }
 
         [SerializeField]
         private string _ipAdress;

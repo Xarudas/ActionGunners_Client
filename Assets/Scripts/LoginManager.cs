@@ -1,8 +1,12 @@
+
 using DarkRift;
+using DarkRift.Client;
 using MeatInc.ActionGunnersShared;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace MeatInc.ActionGunnersClient
@@ -17,21 +21,25 @@ namespace MeatInc.ActionGunnersClient
         private Button _submitLoginButton;
 
 
+
+
         private void Start()
         {
             ConnectionManager.Instance.OnConnected += StartLoginProcess;
+            ConnectionManager.Instance.Client.MessageReceived += OnMessage;
             _loginWindow.SetActive(false);
             _submitLoginButton.onClick.AddListener(OnSubmitLogin);
         }
+
+        
+
         private void OnDestroy()
         {
             ConnectionManager.Instance.OnConnected -= StartLoginProcess;
+            ConnectionManager.Instance.Client.MessageReceived -= OnMessage;
         }
 
-        private void StartLoginProcess()
-        {
-            _loginWindow.SetActive(true);
-        }
+        
 
         public void OnSubmitLogin()
         {
@@ -45,7 +53,40 @@ namespace MeatInc.ActionGunnersClient
                 }
             }
         }
+        private void StartLoginProcess()
+        {
+            _loginWindow.SetActive(true);
+        }
+        private void OnMessage(object sender, MessageReceivedEventArgs e)
+        {
+            using (Message message = e.GetMessage())
+            {
+                switch (message.Tag)
+                {
+                    case Tags.Login.LoginRequestDenied:
+                        OnLoginDecline();
+                        break;
+                    case Tags.Login.LoginRequestAccepted:
+                        OnLoginAccept(message.Deserialize<LoginInfoData>());
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
 
-        
+       
+
+        private void OnLoginDecline()
+        {
+            _loginWindow.SetActive(true);
+        }
+
+        private void OnLoginAccept(LoginInfoData loginInfoData)
+        {
+            ConnectionManager.Instance.PlayerId = loginInfoData.Id;
+            ConnectionManager.Instance.LobbyInfoData = loginInfoData.Data;
+            SceneManager.LoadScene("Lobby");
+        }
     }
 }
