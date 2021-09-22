@@ -72,7 +72,7 @@ namespace MeatInc.ActionGunnersClient.RoomSystem
                         OnCreatedRoom(message.Deserialize<RoomData>());
                         break;
                     case Tags.Room.CreateDenied:
-
+                        Debug.Log("CreateDenied");
                         break;
                     case Tags.Room.JoinAccept:
                         OnJoinRoom();

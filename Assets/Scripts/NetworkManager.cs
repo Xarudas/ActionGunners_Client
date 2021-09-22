@@ -36,7 +36,10 @@ namespace MeatInc.ActionGunnersClient
         }
         private void OnDestroy()
         {
-            Client.Disconnected -= OnDisconnect;
+            if (Client != null)
+            {
+                Client.Disconnected -= OnDisconnect;
+            }
         }
         public void Connect()
         {
@@ -54,7 +57,7 @@ namespace MeatInc.ActionGunnersClient
             }
             else
             {
-                Debug.LogError(e);
+                Debug.LogException(e);
                 ConnectionFailed?.Invoke(e);
             }
         }
@@ -63,9 +66,8 @@ namespace MeatInc.ActionGunnersClient
             Disconnected?.Invoke(e);
             if (!e.LocalDisconnect)
             {
-                Debug.LogError(e.Exception);
+                Debug.LogException(e.Exception);
             }
-            Debug.Log("123");
         }
     }
 

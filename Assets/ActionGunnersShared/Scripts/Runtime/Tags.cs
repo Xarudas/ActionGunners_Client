@@ -24,11 +24,14 @@ namespace MeatInc.ActionGunnersShared
             public const ushort JoinAccept = 106;
             public const ushort JoinDenied = 107;
             public const ushort LeaveRequest = 108;
-            public const ushort LeaveResponse = 109;
         }
         public static class Game
         {
             public const ushort JoinRequest = 200;
+            public const ushort LeaveRequest = 201;
+            public const ushort StartDataResponse = 202;
+            public const ushort StateUpdate = 203;
+            public const ushort PlayerInput = 204;
         }
     }
 }
