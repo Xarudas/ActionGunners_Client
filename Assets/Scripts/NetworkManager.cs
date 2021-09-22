@@ -43,6 +43,10 @@ namespace MeatInc.ActionGunnersClient
         }
         public void Connect()
         {
+            if (Client.ConnectionState == DarkRift.ConnectionState.Connected)
+            {
+                Disconnect();
+            }
             Client.ConnectInBackground(_ipAdress, _port, _noDelay, OnConnect);
         }
         public void Disconnect()
