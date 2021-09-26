@@ -1,4 +1,5 @@
 using DarkRift.Client.Unity;
+using MeatInc.ActionGunnersClient.Network.Components;
 using MeatInc.ActionGunnersClient.Network.Components.ConnectionManagement;
 using System;
 using UnityEngine;
@@ -18,6 +19,7 @@ namespace MeatInc.ActionGunnersClient.Network.Installers
         private void InstallConnectionManagment()
         {
             Container.Bind<UnityClient>().FromInstance(_client).AsSingle();
+            Container.BindInterfacesAndSelfTo<NetworkRelay>().AsSingle();
             Container.BindInterfacesAndSelfTo<DisconnectionManager>().AsSingle();
         }
     }
