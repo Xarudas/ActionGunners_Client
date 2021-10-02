@@ -109,9 +109,6 @@ namespace MeatInc.ActionGunnersClientLegacy
                 }
             }
         }
-
-        
-
         private void OnGameJoinAccept(GameStartData gameStartData)
         {
             LastReceivedServerTick = gameStartData.OnJoinServerTick;

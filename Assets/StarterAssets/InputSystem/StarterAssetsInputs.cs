@@ -7,11 +7,23 @@ namespace StarterAssets
 {
 	public class StarterAssetsInputs : MonoBehaviour
 	{
+		public Vector2 Move { get => _move; }
+		public Vector2 Look { get => _look; }
+		public bool PrimaryAction { get => _primaryAction; }
+		public bool Jump { get => jump; }
+		public bool Sprint { get => sprint; }
+
 		[Header("Character Input Values")]
-		public Vector2 move;
-		public Vector2 look;
-		public bool jump;
-		public bool sprint;
+		[SerializeField]
+		private Vector2 _move;
+		[SerializeField]
+		private Vector2 _look;
+		[SerializeField]
+		private bool _primaryAction;
+		[SerializeField]
+		private bool jump;
+		[SerializeField]
+		private bool sprint;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -22,7 +34,7 @@ namespace StarterAssets
 		public bool cursorInputForLook = true;
 #endif
 
-#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
+#if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
@@ -36,6 +48,10 @@ namespace StarterAssets
 			}
 		}
 
+		public void OnPrimaryAction(InputValue value)
+        {
+			PrimaryActionInput(value.isPressed);
+        }
 		public void OnJump(InputValue value)
 		{
 			JumpInput(value.isPressed);
@@ -52,19 +68,22 @@ namespace StarterAssets
 
 		public void MoveInput(Vector2 newMoveDirection)
 		{
-			move = newMoveDirection;
+			_move = newMoveDirection;
 		} 
 
 		public void LookInput(Vector2 newLookDirection)
 		{
-			look = newLookDirection;
+			_look = newLookDirection;
 		}
 
 		public void JumpInput(bool newJumpState)
 		{
 			jump = newJumpState;
 		}
-
+		public void PrimaryActionInput(bool newPrimaryActionState)
+        {
+			_primaryAction = newPrimaryActionState;
+        }
 		public void SprintInput(bool newSprintState)
 		{
 			sprint = newSprintState;
