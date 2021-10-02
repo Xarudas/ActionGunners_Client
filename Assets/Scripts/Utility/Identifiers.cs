@@ -4,10 +4,13 @@ using UnityEngine;
 
 namespace MeatInc.ActionGunnersClient.Utility
 {
-        public enum Identifiers
-        {
-            MainMenuPlayButton,
-            MainMenuQuitButton,
-            ConnectionText
-        }
+    public enum Identifiers
+    {
+        Player,
+        Network,
+        MainMenuPlayButton,
+        MainMenuQuitButton,
+        ConnectionText,
+        CameraFollowRoot
+    }
 }

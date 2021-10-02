@@ -23,7 +23,7 @@ namespace MeatInc.ActionGunnersShared.Game
             CharacterController = GetComponent<CharacterController>();
         }
 
-        public PlayerStateData GetNextFrameData(PlayerInputData input, PlayerStateData currentState)
+        /*public PlayerStateData GetNextFrameData(PlayerInputData input, PlayerStateData currentState)
         {
             Vector3 rotation = input.LookDirection.eulerAngles;
             gravity = new Vector3(0, currentState.Gravity, 0);
@@ -62,6 +62,6 @@ namespace MeatInc.ActionGunnersShared.Game
             CharacterController.Move(movement);
 
             return new PlayerStateData(currentState.Id, gravity.y, transform.localPosition, input.LookDirection);
-        }
+        }*/
     }
 }

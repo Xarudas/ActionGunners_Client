@@ -6,7 +6,7 @@ namespace MeatInc.ActionGunnersShared.Game
 {
     public class PlayerInterpolation : MonoBehaviour
     {
-        private float _lastInputTime;
+        /*private float _lastInputTime;
 
         public PlayerStateData CurrentData { get; set; }
         public PlayerStateData PreviousData { get; private set; }
@@ -29,6 +29,6 @@ namespace MeatInc.ActionGunnersShared.Game
             PreviousData = prevData;
             CurrentData = data;
             _lastInputTime = Time.fixedTime;
-        }
+        }*/
     }
 }
